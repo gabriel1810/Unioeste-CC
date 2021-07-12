@@ -1,41 +1,35 @@
+//uri Média de positivos e negativos
 #include <stdio.h>
 
-double operacaoMatriz(double M[][12], int linha, char operacao){
-    int i = 0;
-    double sum = 0,media = 0;
+int main (){
+    int N, num,aux=0, counter_neg=0, counter_pos=0;
+    float media_positivos, media_negativos, perc_pos, perc_neg;
 
-    if (operacao == 'S'){
-            for( i = 0; i < 12; i++)
-                sum += M[linha][i];
+    scanf ("%d",&N);
 
-        printf("%0.1lf\n",sum);
-        return 0;
+    while (aux < N){
+        scanf("%d",&num);
+            if (num < 0){
+                media_negativos += num;
+                counter_neg++;
+            }
+            else{
+                media_positivos += num;
+                counter_pos++;
+            }
+        aux ++;
     }
-    else if (operacao == 'M'){
-        for( i = 0; i < 12; i++)
-                sum += M[linha][i];
 
-        media = sum/12;
-        printf("%0.1lf\n",media);
-        return 0;
-    }
-}
+    //Calcula e printa as medias
+    printf("%0.1f\n", media_positivos/counter_pos);
+    printf("%0.1f\n", media_negativos/counter_neg);
 
-void preencheMatriz(double M[][12]){
-    int i,j;
-        for(i =0; i < 12; i++)
-            for(j = 0; j < 12; j++)
-                scanf("%lf",&M[i][j]);
-}
+    //calcula a porcentagem
+    perc_pos = (float)counter_pos/N;
+    perc_neg = (float)counter_neg/N;
 
-int main(){
-    double mat[12][12];
-    char operacao;
-    int linha;
-
-    scanf("%d ",&linha);
-    scanf("%c",&operacao);
-    preencheMatriz(mat);
-    operacaoMatriz(mat,linha,operacao);
+    //printa as porcentagens
+    printf("%0.1f%c\n", perc_pos*100,'%');
+    printf("%0.1f%c\n", perc_neg*100,'%');
     return 0;
 }

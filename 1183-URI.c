@@ -1,49 +1,22 @@
+// URI Número perfeito
 #include <stdio.h>
 
-double somaMatriz(double M[][12]){
-    int i=0,j=0,aux = 1;
-    double sum=0;
+int main(){
+    int N, aux=1, soma=0;
 
-    for( i = 0; i < 11; i++){
-                for(j = aux; j < 12; j++)
-                sum += M[i][j];
+    scanf("%d",&N);
 
-                aux++;
-            }
-        printf("%0.1lf\n",sum);
-        return 0;
-}
+    //while até N-1 para acumular aux em soma
 
-double multiplicaMatriz(double M[][12]){
-    int i = 0, j = 0, aux = 1,numMedia = 0;
-    double sum = 0,media = 0;
-
-        for( i = 0; i < 11; i++){
-            for(j = aux; j < 12; j++){
-                sum += M[i][j];
-                numMedia++;
-                }
-            aux++;
-        }
-        media = sum/numMedia;
-        printf("%0.1lf\n",media);
-        return 0;
+    while (aux < N){
+        if(N % aux == 0) //O resto da divisão de N e aux ser 0 significa que aux é divisivel por N
+            soma += aux;
+        aux++;
     }
 
-void preencheMatriz(double M[][12]){
-    int i,j;
-        for(i =0; i < 12; i++)
-            for(j = 0; j < 12; j++)
-                scanf("%lf",&M[i][j]);
-}
+    //se soma for igual ao N quer dizer que ele é perfeito
+    if (soma == N) printf("eh perfeito\n");
+    else printf("naum eh perfeito\n");
 
-int main(){
-    char operacao;
-    double mat[12][12];
-
-    scanf("%c ",&operacao);
-    preencheMatriz(mat);
-    if (operacao == 'S') somaMatriz(mat);
-    else multiplicaMatriz(mat);
     return 0;
 }

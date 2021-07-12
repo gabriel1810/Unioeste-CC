@@ -1,42 +1,22 @@
+/*  uri soma par e soma ímpar
+    Identificar se o número é par ou ímpar e somar à respectiva variável */
 #include <stdio.h>
 
-double operacaoMatriz(double M[][12], int coluna, char operacao){
-    int i = 0;
-    double sum = 0,media = 0;
+int main ()
+{
+    int x, result_pares = 0, result_impares = 0;
 
-    if (operacao == 'S'){
-            for( i = 0; i < 12; i++)
-                sum += M[i][coluna];
+    scanf("%d",&x);
 
-        printf("%0.1lf\n",sum);
-        return 0;
-    }
-    else if (operacao == 'M'){
-        for( i = 0; i < 12; i++)
-                sum += M[i][coluna];
+    while (x >= 0 ){
+        if ((x % 2) == 0)             //verifica se o número é par
+            result_pares += x;        //se for par
 
-        media = sum/12;
-        printf("%0.1lf\n",media);
-        return 0;
-    }
-}
+        else result_impares +=x;      //se for impar
 
-void preencheMatriz(double M[][12]){
-    int i,j;
-        for(i =0; i < 12; i++)
-            for(j = 0; j < 12; j++)
-                scanf("%lf",&M[i][j]);
-}
+        scanf("%d",&x);
+        }
 
-int main(){
-    double mat[12][12];
-    char operacao;
-    int coluna;
-
-    scanf("%d ",&coluna);
-    scanf("%c",&operacao);
-    preencheMatriz(mat);
-    operacaoMatriz(mat,coluna,operacao);
+    printf("%d\n%d\n",result_pares,result_impares);
     return 0;
 }
-
